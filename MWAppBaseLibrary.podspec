@@ -21,22 +21,63 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/7610712/MWAppBaseLibrary'
+  s.homepage         = 'https://github.com/mokong/MWAppBaseLibrary'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '7610712' => 'a525325614@163.com' }
-  s.source           = { :git => 'https://github.com/7610712/MWAppBaseLibrary.git', :tag => s.version.to_s }
+  s.author           = { 'MorganWang' => 'a525325614@163.com' }
+  s.source           = { :git => 'https://github.com/mokong/MWAppBaseLibrary.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'MWAppBaseLibrary/Classes/**/*'
   
+  s.subspec 'Const' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Const/*.{swift}'
+  end
+  
+  s.subspec 'Controller' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Controller/*.{swift}'
+  end
+  
+  s.subspec 'DataBase' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/DataBase/*.{swift}'
+  end
+  
+  s.subspec 'Extension' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Extension/*.{swift}'
+  end
+  
+  s.subspec 'Location' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Location/*.{swift}'
+  end
+  
+  s.subspec 'Model' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Model/*.{swift}'
+  end
+  
+  s.subspec 'Module' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Module/*.{swift}'
+  end
+  
+  s.subspec 'Util' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/Util/*.{swift}'
+  end
+  
+  s.subspec 'View' do |aa|
+      aa.source_files = 'MWAppBaseLibrary/Classes/View/*.{swift}'
+  end
+  
+#  s.resource = 'MWAppBaseLibrary/Classes/*.bundle'
+
   # s.resource_bundles = {
   #   'MWAppBaseLibrary' => ['MWAppBaseLibrary/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+   s.public_header_files = 'Pod/Classes/**/*.h'
+   s.frameworks = 'UIKit'
+   s.dependency 'SnapKit'
+   s.dependency 'WCDB'
+   s.dependency 'KeychainAccess'
+   s.dependency 'LanguageManager-iOS'
 end

@@ -1,0 +1,76 @@
+{
+  "name": "MWAppBaseLibrary",
+  "version": "0.1.0",
+  "summary": "A short description of MWAppBaseLibrary.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/mokong/MWAppBaseLibrary",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "MorganWang": "a525325614@163.com"
+  },
+  "source": {
+    "git": "https://github.com/mokong/MWAppBaseLibrary.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "MWAppBaseLibrary/Classes/**/*",
+  "public_header_files": "Pod/Classes/**/*.h",
+  "frameworks": "UIKit",
+  "dependencies": {
+    "SnapKit": [
+
+    ],
+    "WCDB": [
+
+    ],
+    "KeychainAccess": [
+
+    ],
+    "LanguageManager-iOS": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Const",
+      "source_files": "MWAppBaseLibrary/Classes/Const/*.{swift}"
+    },
+    {
+      "name": "Controller",
+      "source_files": "MWAppBaseLibrary/Classes/Controller/*.{swift}"
+    },
+    {
+      "name": "DataBase",
+      "source_files": "MWAppBaseLibrary/Classes/DataBase/*.{swift}"
+    },
+    {
+      "name": "Extension",
+      "source_files": "MWAppBaseLibrary/Classes/Extension/*.{swift}"
+    },
+    {
+      "name": "Location",
+      "source_files": "MWAppBaseLibrary/Classes/Location/*.{swift}"
+    },
+    {
+      "name": "Model",
+      "source_files": "MWAppBaseLibrary/Classes/Model/*.{swift}"
+    },
+    {
+      "name": "Module",
+      "source_files": "MWAppBaseLibrary/Classes/Module/*.{swift}"
+    },
+    {
+      "name": "Util",
+      "source_files": "MWAppBaseLibrary/Classes/Util/*.{swift}"
+    },
+    {
+      "name": "View",
+      "source_files": "MWAppBaseLibrary/Classes/View/*.{swift}"
+    }
+  ]
+}
