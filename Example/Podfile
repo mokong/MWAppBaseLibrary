@@ -1,0 +1,6 @@
+use_frameworks!
+target 'MWAppBaseLibrary_Tests' do
+  pod 'MWAppBaseLibrary', :path => '../'
+  
+  
+end
