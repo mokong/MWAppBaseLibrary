@@ -10,6 +10,7 @@ import UIKit
 class MWAppBaseLaunchTempVC: MWAppBaseViewController {
 
     private(set) var privacyModule: MWAppBasePrivacyAlertViewModule?
+    var jumpRootVCCallback: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,7 @@ class MWAppBaseLaunchTempVC: MWAppBaseViewController {
             if index == 1 {
                 UserDefaults.standard.setValue("1", forKey: kIsAgreePrivacyPolicy)
                 self?.privacyModule?.hide()
-                let vc = MWAppBaseVC()
-                let nc = MWWaterMarkNavigationController(rootViewController: vc)
-                UIApplication.shared.keyWindow?.rootViewController = nc
+                self?.jumpRootVCCallback?()
             }
             else {
                 exit(0)

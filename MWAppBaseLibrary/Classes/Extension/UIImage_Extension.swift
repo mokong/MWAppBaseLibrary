@@ -142,24 +142,6 @@ extension UIImage {
         }
     }
     
-    class func saveToAppPhotoLibrary(with image: UIImage, complection: ((Bool) -> Void)?) {
-        let albumDBItem = MWWaterMarkAlbumDBItem.generateAlbumDBItem()
-        albumDBItem.image = image
-        albumDBItem.thumbnailImage = image.resizeImage(to: CGSize(width: 250.0, height: 250.0))
-        MWWaterMarkDBUtil.savePhotoItem(with: albumDBItem)
-        complection?(true)
-    }
-    
-    class func saveToPhotoLibrary(with image: UIImage, completion: ((Bool) -> Void)?) {
-        let isEnable = MWWaterMarkProjectConsts.shared.isUserDefaultsEnable(kIsUseInAppAlbum)
-        if isEnable {
-            UIImage.saveToAppPhotoLibrary(with: image, complection: completion)
-        }
-        else {
-            UIImage.saveToSystemPhotoLibrary(with: image, completion: completion)
-        }
-    }
-    
     class func fixOrientation(_ aImage: UIImage) -> UIImage {
         let imageOrientation = aImage.imageOrientation
         if imageOrientation == .up {
@@ -246,76 +228,6 @@ extension UIImage {
         default:
             return UIImage.Orientation.up
         }
-    }
-    
-    func draw(waterMarkImage: UIImage, position: MWMarkFixedPositionType, alpha: CGFloat = 1.0) -> UIImage? {
-        let imageSize = self.size
-                
-        var waterMarkImageW = waterMarkImage.size.width
-        var waterMarkImageH = waterMarkImage.size.height
-        let waterMarkImageRatio = waterMarkImageW / waterMarkImageH
-        var marginY = 27.0
-        var marginX = 16.0
-        
-        switch position {
-        case .topLeft:
-            marginY = MWScreenHeight - 27.0 - waterMarkImageH
-            marginX = MWScreenWidth - 16.0 - waterMarkImageW
-        case .topCenter:
-            marginY = MWScreenHeight - 27.0 - waterMarkImageH
-            marginX = (MWScreenWidth - waterMarkImageW) / 2.0
-        case .topRight:
-            marginY = MWScreenHeight - 27.0 - waterMarkImageH
-            marginX = 16.0
-        case .center:
-            marginY = (MWScreenHeight - waterMarkImageW) / 2.0
-            marginX = (MWScreenWidth - waterMarkImageW) / 2.0
-        case .bottomLeft:
-            marginY = 27.0
-            marginX = MWScreenWidth - 16.0 - waterMarkImageW
-        case .bottomCenter:
-            marginY = 27.0
-            marginX = (MWScreenWidth - waterMarkImageW) / 2.0
-        case .bottomRight:
-            marginY = 27.0
-            marginX = 16.0
-            break
-        }
-        
-        let tempScale = imageSize.width / MWScreenWidth
-        waterMarkImageW = waterMarkImageW * tempScale
-        waterMarkImageH = waterMarkImageW / waterMarkImageRatio
-        marginY = marginY / (MWScreenHeight / imageSize.height)
-        marginX = marginX * tempScale
-        
-        var maskFrame = CGRect(x: 0.0, y: 0.0, width: waterMarkImageW, height: waterMarkImageH)
-        maskFrame.origin = CGPoint(x: imageSize.width - waterMarkImageW - marginX, y: imageSize.height - waterMarkImageH - marginY)
-        // 开始绘制给图片添加图片
-        return draw(waterMarkImage: waterMarkImage, maskFrame: maskFrame, alpha: 1.0)
-    }
-    
-    func draw(waterMarkImage: UIImage, margin: CGPoint, alpha: CGFloat = 1.0) -> UIImage? {
-        let imageSize = self.size
-                
-        var waterMarkImageW = waterMarkImage.size.width
-        var waterMarkImageH = waterMarkImage.size.height
-        let waterMarkImageRatio = waterMarkImageW / waterMarkImageH
-        var marginY = margin.y
-        var marginX = margin.x
-        
-        let tempScaleW = imageSize.width / MWScreenWidth
-        let tempScaleY = imageSize.height / (MWScreenHeight - MWCameraBottomView.viewHeight())
-        
-        waterMarkImageW = waterMarkImageW * tempScaleW
-        waterMarkImageH = waterMarkImageW / waterMarkImageRatio
-        marginY = marginY * tempScaleY
-        marginX = marginX * tempScaleW
-        
-        var maskFrame = CGRect(x: 0.0, y: 0.0, width: waterMarkImageW, height: waterMarkImageH)
-        maskFrame.origin = CGPoint(x: marginX, y: marginY)
-        
-        // 开始绘制给图片添加图片
-        return draw(waterMarkImage: waterMarkImage, maskFrame: maskFrame, alpha: 1.0)
     }
     
     func draw(waterMarkImage: UIImage, maskFrame: CGRect, alpha: CGFloat = 1.0) -> UIImage? {

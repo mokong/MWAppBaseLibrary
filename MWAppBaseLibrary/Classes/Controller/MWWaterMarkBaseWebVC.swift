@@ -7,7 +7,6 @@
 
 import UIKit
 import WebKit
-import Toast_Swift
 
 class MWWaterMarkBaseWebVC: MWAppBaseViewController {
 
@@ -66,7 +65,6 @@ class MWWaterMarkBaseWebVC: MWAppBaseViewController {
                   return
               }
         
-        self.view.makeToastActivity(self.view.center)
         webView?.load(URLRequest(url: url))
     }
     
@@ -80,10 +78,11 @@ class MWWaterMarkBaseWebVC: MWAppBaseViewController {
 
 extension MWWaterMarkBaseWebVC: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.view.hideToastActivity()
+
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        self.view.hideToastActivity()
+
+        
     }
 }

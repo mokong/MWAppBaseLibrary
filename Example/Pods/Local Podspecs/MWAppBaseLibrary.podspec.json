@@ -18,6 +18,7 @@
   "platforms": {
     "ios": "10.0"
   },
+  "swift_versions": "4.2",
   "source_files": "MWAppBaseLibrary/Classes/**/*",
   "public_header_files": "Pod/Classes/**/*.h",
   "frameworks": "UIKit",
@@ -25,13 +26,16 @@
     "SnapKit": [
 
     ],
-    "WCDB": [
+    "WCDB.swift": [
 
     ],
     "KeychainAccess": [
 
     ],
     "LanguageManager-iOS": [
+
+    ],
+    "SwiftyStoreKit": [
 
     ]
   },
@@ -72,5 +76,6 @@
       "name": "View",
       "source_files": "MWAppBaseLibrary/Classes/View/*.{swift}"
     }
-  ]
+  ],
+  "swift_version": "4.2"
 }
